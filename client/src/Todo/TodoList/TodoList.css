@@ -1,0 +1,81 @@
+.todo-add-container {
+  margin-top: 10px;
+}
+.todo-add-container input {
+  width: 60%;
+  padding: 10px;
+  margin: 10px;
+  background: linear-gradient(0deg, #152431, #152431),
+    linear-gradient(0deg, rgba(143, 168, 193, 0.5), rgba(143, 168, 193, 0.5));
+  border: 1px solid #8fa8c180;
+  border-radius: 3px;
+}
+.todo-add-container input:visited {
+  background-color: red;
+}
+
+.todo-add-container button {
+  width: 95px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 3px;
+  border: none;
+  background: #0c5488;
+}
+
+.todo-list-container {
+  /* max-width: 600px; */
+  width: 100%;
+  margin-top: 50px;
+}
+
+.todo-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-top: 10px;
+  border-bottom: 1px dotted;
+}
+
+.todo-list .p-container {
+  width: 80%;
+  overflow-wrap: anywhere;
+}
+
+.todo-list p {
+  padding: 18px;
+  margin-left: 33px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  /* text-decoration-line: ; */
+}
+
+.todo-list .buttons {
+  width: 20%;
+}
+
+.todo-list button {
+  margin: 5px;
+  padding: 3px;
+  background-color: transparent;
+  border: none;
+  margin-left: 15px;
+  filter: invert();
+  opacity: 0.3;
+}
+
+.todo-list button:hover {
+  margin: 5px;
+  padding: 3px;
+  background-color: transparent;
+  border: none;
+  margin-left: 15px;
+  filter: invert();
+  opacity: 1;
+}
