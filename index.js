@@ -58,7 +58,16 @@ res.status(404).json({
    
 });
 
-// app.delete("/api/todo")
+app.delete("/api/todo", (req,res) => {
+const {id} = req.body;
+const todoIndex = todoList.findIndex((todoItem) => todoItem.id === id);
+if(todoIndex !== -1) {
+    todoList.splice(todoIndex,1);
+    return res.json(todoList);
+};
+
+res.status(404).json({message: "Item does not exist"})
+});
 
 app.all("*", (req, res) => {
   res.status(404).json("This page does not exist");
