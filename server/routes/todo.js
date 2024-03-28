@@ -1,28 +1,46 @@
 const express = require("express");
 
 const router = express.Router();
-router.get("/", (req, res) => {
+
+const Todo = require("../models/todoModel");
+const { error } = require("console");
+
+const todoList = [
+    {
+      id: "123",
+      todo: "test1",
+      isCompleted: false,
+    },
+  ];
+
+router.get("/", async (req, res) => {
+  const todoList = await  Todo.find();
     res.status(200).json(todoList);
   });
-  router.post("/", (req, res) => {
+  router.post("/", async(req, res) => {
     const { todo } = req.body;
   
-    if (!("todo" in req.body)) {
-      res.status(400).json({
-        message: `${JSON.stringify(
-          req.body
-        )}: This attribute is not accepted, Required attributes: todo`,
-      });
-      return;
-    }
-  
+    // if (!("todo" in req.body)) {
+    //   res.status(400).json({
+    //     message: `${JSON.stringify(
+    //       req.body
+    //     )}: This attribute is not accepted, Required attributes: todo`,
+    //   });
+    //   return;
+    // }
+  try {
+    
     const todoItem = {
-      id: uuidv4(),
-      todo: todo,
-      isCompleted: false,
-    };
-    todoList.push(todoItem);
-    res.json(todoList);
+        todo: todo,
+        isCompleted: false,
+      }; 
+     await Todo.create(req.body);
+      res.json({message:"data"});
+  } catch (error) {
+    
+  }res.status(400).json({
+    message:error.message,
+  })
   });
   router.put("/", (req,res) => {
       

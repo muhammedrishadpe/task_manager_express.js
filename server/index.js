@@ -10,13 +10,6 @@ const todoRoute = require("./routes/todo");
 app.use(cors());
 app.use(express.json());
 connectDb();
-const todoList = [
-  {
-    id: "123",
-    todo: "test1",
-    isCompleted: false,
-  },
-];
 app.use("/api/todo", todoRoute);
 app.all("*", (req, res) => {
   res.status(404).json("This page does not exist");
