@@ -11,7 +11,7 @@ export const TodoList = () => {
 
   const [selectedIndexes, setSelectedIndexes] = useState([]);
 
-  const API_URL = "http://localhost:3005/api/todo";
+  const API_URL = "http://localhost:3007/api/todo";
 
   const fetchTodo = async () => {
     try {
@@ -52,11 +52,11 @@ export const TodoList = () => {
     setClickedIndex(index);
   };
 
-  const handleEdit = async ( id, newValue) => {
+  const handleEdit = async ( _id, newValue) => {
 if(newValue) {
   try{
     const response = await axios(API_URL,{method:"PUT", data:{
-      id:id,
+      _id:_id,
       todo:newValue,
       isCompleted:false,
     }
@@ -70,10 +70,10 @@ setEditTodeId("");
   };
 
   //Delete
-  const onDelete = async (id) => {
+  const onDelete = async (_id) => {
     try{
       const response = await axios(API_URL,{method:"DELETE", data:{
-        id,//id:id
+        _id,//_id:_id
       }
     });
     setTodosValus(response.data);
@@ -105,12 +105,12 @@ setEditTodeId("");
       {/* Todo List */}
 
       {todosValues.map((data, index) => (
-        <div key={data.id} className="">
+        <div key={data._id} className="">
           {clickedIndex === index ? (
             <TodoEdit
               onCancel={() => setClickedIndex(null)}
               value={data.todo}
-              onSave={(newValue) => handleEdit(data.id,newValue)}
+              onSave={(newValue) => handleEdit(data._id,newValue)}
             />
           ) : (
             <div className={"todo-list"}>
@@ -126,7 +126,7 @@ setEditTodeId("");
                   {data.todo}
                 </p>
               </div>
-              <div id="buttons">
+              <div _id="buttons">
                 <button onClick={() => onEdit(index)}>
                   <img
                     width="25px"
@@ -136,7 +136,7 @@ setEditTodeId("");
                     alt="Edit"
                   />
                 </button>
-                <button onClick={() => onDelete(data.id)}>
+                <button onClick={() => onDelete(data._id)}>
                   <img
                     width="25px"
                     height="25px"

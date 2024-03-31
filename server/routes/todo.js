@@ -32,8 +32,9 @@ router.get("/", async (req, res) => {
         todo: todo,
         isCompleted: false,
       }; 
-     await Todo.create(req.body);
-      res.json({message:"data has been added"});
+   const updatedTodo =  await Todo.create(todoItem);
+     const allTodo = await Todo.find(); //Do not use this method. Do the array manipulation from Front End
+      res.json(allTodo);
   } catch (error) {
   res.status(400).json({
     message:error.message,
@@ -51,7 +52,8 @@ router.get("/", async (req, res) => {
     const updatedData = await Todo.findByIdAndUpdate(_id, fieldsToUpdate, {new:true})
     if(updatedData) {
         
-        return res.json(updatedData);
+     const allTodo = await Todo.find(); //Do not use this method. Do the array manipulation from Front 
+        return res.json(allTodo);
     }
     
     res.status(404).json({
@@ -72,9 +74,9 @@ try {
 const deletedField = await Todo.findByIdAndDelete(_id)
 //   const todoIndex = todoList.findIndex((todoItem) => todoItem.id === id);
   if(deletedField) {
-      return res.json({
-        message:"Record has been deleted",
-      });
+    
+    const allTodo = await Todo.find(); //Do not use this method. Do the array manipulation from Front 
+      return res.json(allTodo);
   };
   
   res.status(404).json({message: "Item does not exist"})
